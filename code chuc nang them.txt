@@ -1,0 +1,24 @@
+public boolean AddData(Employess emp){
+        boolean check=false;
+        try {
+            getConnect();
+            PreparedStatement ps = con.prepareStatement(ADD_DATA);
+       
+            ps.setString(1, emp.getUsername());
+            ps.setString(2,  emp.getPassword());
+            ps.setString(3,  emp.getFullName());
+            ps.setString(4,  emp.getAge());
+            ps.setString(5,  emp.getAddress());
+            ps.setString(6,  emp.getPhone());
+            ps.setInt(7,  emp.getDepID());
+            ps.setInt(8,  emp.getPrID());
+            int rs = ps.executeUpdate();
+            if(rs > 0){
+                check = true;
+            }
+            getClose();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check;
+    }
